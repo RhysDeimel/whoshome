@@ -9,7 +9,7 @@ class TestWhosHome(unittest.TestCase):
 		self.assertEqual(2, 2)
 
 	def test_testy_test_pants(self):
-		self.assertNotEqual(2, 3)
+		self.assertNotEqual(2, 2)
 
 
 if __name__ == '__main__':
