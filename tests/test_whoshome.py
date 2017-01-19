@@ -6,7 +6,7 @@ class TestWhosHome(unittest.TestCase):
 		self.assertEqual('foo'.upper(), 'FOO')
 
 	def test_smoke_test(self):
-		self.assertEqual(2, 2)
+		self.assertEqual(2, 3)
 
 
 if __name__ == '__main__':
