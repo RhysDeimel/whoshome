@@ -29,4 +29,4 @@ try:
     print('Moving {} to {}'.format('index.html', target))
     shutil.copyfile('index.html', target)
 except:
-    pass
+    print('failed')
