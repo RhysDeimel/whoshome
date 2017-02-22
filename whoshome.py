@@ -24,7 +24,8 @@ import shutil
 #    outfile.write(html_start + time + html_dynamic + html_end)
 
 try:
-    target = os.path.join('usr','share','nginx','html')
+    home = os.environ['HOME']
+    target = os.path.join(home,'usr','share','nginx','html')
     print('Moving {} to {}'.format('index.html', target))
     shutil.copyfile('index.html', target)
 except:
