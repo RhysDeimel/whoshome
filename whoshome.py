@@ -28,5 +28,6 @@ try:
     target = os.path.join(home,'usr','share','nginx','html')
     print('Moving {} to {}'.format('index.html', target))
     shutil.copyfile('index.html', target)
-except:
+except Exception as e:
     print('failed')
+    print(e)
