@@ -1,5 +1,8 @@
 # whoshome
-Small tool to poll my home network and find out who's home
+Small tool to poll my home network and find out who's home.
+
+See the action [here](http://rhysdeimel.ddns.net)
+
 
 
 ## What is it?
