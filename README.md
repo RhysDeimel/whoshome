@@ -1,9 +1,7 @@
 # whoshome
 Small tool to poll my home network and find out who's home.
 
-See the action <a href="http://rhysdeimel.ddns.net" target="_blank">here</a>
-
-
+See the action [here](http://rhysdeimel.ddns.net)
 
 
 ## What is it?
