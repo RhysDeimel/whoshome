@@ -23,6 +23,12 @@ def ping(host):
     """
     return subprocess.run(['ping', '-c', '3', host]).returncode == 0
 
+def days_hours_minutes(td):
+    """
+    Takes a timedela and returns a tuple of (days, hours, minutes)
+    """
+    return td.days, td.seconds//3600, (td.seconds//60)%60
+
 
 
 def runner():
@@ -33,12 +39,16 @@ def runner():
                 db['users'][user]['ip'][ip_add]['online'] = ping(ip_add)
 
                 if db['users'][user]['ip'][ip_add]['online'] == True:
-                    db['users'][user]['ip'][ip_add]['seen'] = datetime.datetime.now()
+                    db['users'][user]['ip'][ip_add]['seen'][0] = datetime.datetime.now()
                 else:
-                    pass
-                    # calculate last seen
-                    datetime.datetime.strptime('2017-02-26 01:22:09.489923', '%Y-%m-%d %H:%M:%S.%f')
-
+                    date1 = db['users'][user]['ip'][ip_add]['seen'][0]
+                    date2 = datetime.datetime.now()
+                    td = date2 - date1
+                    print(td)
+                    td = days_hours_minutes(td)
+                    device = db['users'][user]['ip'][ip_add]['device']
+                    db['users'][user]['ip'][ip_add]['seen'][1] = "{}'s {} last seen {} days, {} hours, and {} minutes ago".format(user.title(), device, td[0], td[1], td[2])
+                    print(db['users'][user]['ip'][ip_add]['seen'][1])
 
 
 

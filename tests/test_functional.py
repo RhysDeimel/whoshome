@@ -18,21 +18,21 @@ class TestPingerFunctional(unittest.TestCase):
     def test_timestamp_is_updated_on_active_ip(self):
         temp_time = datetime.datetime.now()
         with shelve.open('userdb', writeback=True) as db:
-            db['users']['rhys']['ip']['192.168.1.150']['seen'] = temp_time
+            db['users']['rhys']['ip']['192.168.1.150']['seen'][0] = temp_time
         time.sleep(3)
         pinger.runner()
         with shelve.open('userdb', writeback=True) as db:
-            self.assertNotEqual(db['users']['rhys']['ip']['192.168.1.150']['seen'], temp_time)
+            self.assertNotEqual(db['users']['rhys']['ip']['192.168.1.150']['seen'][0], temp_time)
 
     def test_last_seen_is_calculated_for_inactive(self):
         timestamp = datetime.datetime.strptime('2017-02-26 01:22:09.489923', '%Y-%m-%d %H:%M:%S.%f')
         with shelve.open('userdb', writeback=True) as db:
-            db['users']['rhys']['ip']['192.168.1.111']['seen'] = timestamp
+            db['users']['rhys']['ip']['192.168.1.111']['seen'][0] = timestamp
         time.sleep(3)
         pinger.runner()
         with shelve.open('userdb', writeback=True) as db:
-            self.assertNotEqual(db['users']['rhys']['ip']['192.168.1.111']['seen'], timestamp)
-            print(db['users']['rhys']['ip']['192.168.1.150']['seen'])
+            self.assertIn('hours', db['users']['rhys']['ip']['192.168.1.111']['seen'][1])
+            print(db['users']['rhys']['ip']['192.168.1.111']['seen'][1])
     # with everything updated, a jinja template will be populated
 
     # the outputted html file will then be moved to the appropriate
