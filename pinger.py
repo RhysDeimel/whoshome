@@ -16,6 +16,7 @@ def ping(host):
     Returns True if host (str) responds to a ping request.
     Remember that some hosts may not respond to a ping request even if the host name is valid.
     """
+    print("Debug: Pinging ", host)
     return subprocess.run(['ping', '-c', '3', host]).returncode == 0
 
 def days_hours_minutes(td):
@@ -29,6 +30,7 @@ def runner():
     """
     Opens db and updates using ping() and days_hours_minutes()
     """
+    print("Starting process")
     try:
         with shelve.open('userdb', writeback=True) as db:
             for user in db['users'].keys(): # loop users
@@ -44,6 +46,7 @@ def runner():
                         td = days_hours_minutes(td)
                         device = db['users'][user]['ip'][ip_add]['device']
                         db['users'][user]['ip'][ip_add]['seen'][1] = "{}'s {} last seen {} days, {} hours, and {} minutes ago".format(user.title(), device, td[0], td[1], td[2])
+                        print("Shelve file created")
     except Exception as e:
         print('failed')
         print(e)
@@ -56,18 +59,27 @@ def render_from_template(directory, template_name, **kwargs):
 
 runner()
 
+try:
+    print("Trying to create jinja_data")
+    with shelve.open('userdb') as db:
+        jinja_data = {
+            'names': ['kristen', 'marc', 'rhys', 'sahar'],
+            'userdb': copy.deepcopy(db['users']),
+            'updated': datetime.datetime.now()
+        }
+    print("Successfully created jinja_data")
+except Exception as e:
+        print('failed')
+        print(e)
 
-with shelve.open('userdb') as db:
-    jinja_data = {
-        'names': ['kristen', 'marc', 'rhys', 'sahar'],
-        'userdb': copy.deepcopy(db['users']),
-        'updated': datetime.datetime.now()
-    }
-
-with open('index.html', 'w') as outfile:
-    html = render_from_template(".", "index_template.html", **jinja_data)
-    outfile.write(html)
-
+try:
+    print("Trying to render the html file")
+    with open('index.html', 'w') as outfile:
+        html = render_from_template(".", "index_template.html", **jinja_data)
+        outfile.write(html)
+except Exception as e:
+        print('failed')
+        print(e)
 
 try:
     target = os.path.join('/usr','share','nginx','www','whoshome','index.html')
