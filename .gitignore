@@ -2,4 +2,5 @@ secret.txt
 __pycache__
 test
 index.html
-
+*.pyc
+myvenv/

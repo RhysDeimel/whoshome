@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Is anyone home?</title>
+</head>
+		<body>
+			<h1>Who is home?</h1>
+			<p>Updated: {{ updated }}</p>
+
+			<dl>
+			{% for name in names %}
+
+				<dt>{{ name.title() }}</dt>
+					{% for ip in userdb[name]['ip'] %}						
+						<dd>{{ userdb[name]['ip'][ip]['device'].title() }}: {% if userdb[name]['ip'][ip]['online'] %}
+						Online
+						{% else %}
+						Offline - {{ userdb[name]['ip'][ip]['seen'][1] }}
+						{% endif %}
+						</dd>
+					{% endfor %}
+			{% endfor %}
+			</dl>
+
+		</body>
+</html>
