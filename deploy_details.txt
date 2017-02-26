@@ -1,3 +1,7 @@
+to set as executable:
+chmod +x myscript.py
+
+
 sudo crontab -e
 ================================
 

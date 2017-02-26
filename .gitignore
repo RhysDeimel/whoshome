@@ -4,3 +4,5 @@ test
 index.html
 *.pyc
 myvenv/
+userdb
+userdb.db
