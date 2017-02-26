@@ -28,7 +28,7 @@ def runner():
     Opens db and updates using ping() and days_hours_minutes()
     """
     try:
-        with shelve.open('userdb.db', writeback=True) as db:
+        with shelve.open('userdb', writeback=True) as db:
             for user in db['users'].keys(): # loop users
                 for ip_add in db['users'][user]['ip'].keys(): # loop ips
                     db['users'][user]['ip'][ip_add]['online'] = ping(ip_add)
@@ -42,9 +42,9 @@ def runner():
                         td = days_hours_minutes(td)
                         device = db['users'][user]['ip'][ip_add]['device']
                         db['users'][user]['ip'][ip_add]['seen'][1] = "{}'s {} last seen {} days, {} hours, and {} minutes ago".format(user.title(), device, td[0], td[1], td[2])
-        except Exception as e:
-            print('failed')
-            print(e)
+    except Exception as e:
+        print('failed')
+        print(e)
 
 def render_from_template(directory, template_name, **kwargs):
     loader = FileSystemLoader(directory)
@@ -55,7 +55,7 @@ def render_from_template(directory, template_name, **kwargs):
 runner()
 
 
-with shelve.open('userdb.db') as db:
+with shelve.open('userdb') as db:
     jinja_data = {
         'names': ['kristen', 'marc', 'rhys', 'sahar'],
         'userdb': copy.deepcopy(db['users']),
