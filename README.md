@@ -1,3 +1,6 @@
+*New version as of 26/02/17. Need to update this properly.*
+
+
 # whoshome
 Small tool to poll my home network and find out who's home.
 
