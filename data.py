@@ -16,7 +16,7 @@ users = {
                 'online': False,
                 'seen': [datetime.datetime.strptime('2017-02-26 01:22:09.489923', '%Y-%m-%d %H:%M:%S.%f'), '']
             },
-            '192.168.1.105': {
+            '192.168.1.148': {
                 'device': 'phone',
                 'mac': '50:2e:5c:ca:16:1c',
                 'online': False,
@@ -61,3 +61,4 @@ def update():
     with shelve.open('userdb') as db:
         db['users'] = users
     print('db updated!')
+    
