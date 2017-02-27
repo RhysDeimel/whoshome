@@ -10,7 +10,6 @@ import shutil
 from jinja2 import FileSystemLoader, Environment
 
 
-
 def ping(host):
     """
     Returns True if host (str) responds to a ping request.
@@ -18,11 +17,23 @@ def ping(host):
     """
     return subprocess.run(['ping', '-c', '3', host]).returncode == 0
 
+
 def days_hours_minutes(td):
     """
     Takes a timedela and returns a tuple of (days, hours, minutes)
     """
-    return td.days, td.seconds//3600, (td.seconds//60)%60
+    return td.days, td.seconds//3600, (td.seconds//60) % 60
+
+
+def move_files():
+    for file in ['index.html', 'style.css']:
+        try:
+            target = os.path.join('/usr', 'share', 'nginx', 'www', 'whoshome', file)
+            print('Moving {} to {}'.format(file, target))
+            shutil.copyfile(file, target)
+        except Exception as e:
+            print('failed')
+            print(e)
 
 
 def runner():
@@ -31,11 +42,11 @@ def runner():
     """
     try:
         with shelve.open('userdb', writeback=True) as db:
-            for user in db['users'].keys(): # loop users
-                for ip_add in db['users'][user]['ip'].keys(): # loop ips
+            for user in db['users'].keys():  # loop users
+                for ip_add in db['users'][user]['ip'].keys():  # loop ips
                     db['users'][user]['ip'][ip_add]['online'] = ping(ip_add)
 
-                    if db['users'][user]['ip'][ip_add]['online'] == True:
+                    if db['users'][user]['ip'][ip_add]['online']:
                         db['users'][user]['ip'][ip_add]['seen'][0] = datetime.datetime.now()
                     else:
                         date1 = db['users'][user]['ip'][ip_add]['seen'][0]
@@ -48,6 +59,7 @@ def runner():
     except Exception as e:
         print('runner() failed')
         print(e)
+
 
 def render_from_template(directory, template_name, **kwargs):
     loader = FileSystemLoader(directory)
@@ -71,7 +83,7 @@ try:
         html = render_from_template(".", "index_template.html", **jinja_data)
         outfile.write(html)
 
-    target = os.path.join('/usr','share','nginx','www','whoshome','index.html')
+    target = os.path.join('/usr', 'share', 'nginx', 'www', 'whoshome', 'index.html')
     print('Moving {} to {}'.format('index.html', target))
     shutil.copyfile('index.html', target)
 except Exception as e:
