@@ -55,7 +55,6 @@ def runner():
                         td = days_hours_minutes(td)
                         device = db['users'][user]['ip'][ip_add]['device']
                         db['users'][user]['ip'][ip_add]['seen'][1] = "{}'s {} last seen {} days, {} hours, and {} minutes ago".format(user.title(), device, td[0], td[1], td[2])
-                        print("Shelve file created")
     except Exception as e:
         print('runner() failed')
         print(e)
@@ -89,32 +88,3 @@ try:
 except Exception as e:
     print('failed')
     print(e)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""
-prefix = '192.168.1.'
-online = []
-
-
-for num in range(100, 151):
-    ip = prefix + str(num)
-    if ping(ip) == True:
-        online.append(ip)
-
-print(online)
-"""
