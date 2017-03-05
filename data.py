@@ -31,14 +31,26 @@ users = {
                 'mac': '70:a2:b3:d9:dc:6b',
                 'online': False,
                 'seen': [datetime.datetime.strptime('2017-02-26 01:22:09.489923', '%Y-%m-%d %H:%M:%S.%f'), '']
+            },
+            '192.168.1.110': {
+                'device': 'phone',
+                'mac': 'ec:1f:72:bd:fd:62',
+                'online': False,
+                'seen': [datetime.datetime.strptime('2017-02-26 01:22:09.489923', '%Y-%m-%d %H:%M:%S.%f'), '']
             }
         }
     },
     'sahar': {
         'ip': {
             '192.168.1.114': {
-                'device': 'Unknown',
+                'device': 'laptop',
                 'mac': '28:37:37:19:9c:de',
+                'online': False,
+                'seen': [datetime.datetime.strptime('2017-02-26 01:22:09.489923', '%Y-%m-%d %H:%M:%S.%f'), '']
+            },
+            '192.168.1.105': {
+                'device': 'iPhone',
+                'mac': 'bc:6c:21:a5:49:99',
                 'online': False,
                 'seen': [datetime.datetime.strptime('2017-02-26 01:22:09.489923', '%Y-%m-%d %H:%M:%S.%f'), '']
             }
