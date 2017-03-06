@@ -15,11 +15,8 @@ Currently I have cron running it every five minutes.
 It's basic, ugly as sin, but kinda works.
 
 ### Future plans
-- get MAC addresses of all housemate's devices
 - Make it less shit (the Python code)
 - Add css to make it less ugly
-- Implement a last seen
-  - because mobile devices like to turn off wifi in sleep mode
 - Instead of listing each device, create a probability of being home?
 
-*So this has problems with mobile devices that turn off wifi when they sleep. I'm going to have to rewrite this using ping because that seems to wake them up*
+*So this has problems with apple devices because they like to turn their wifi off and not respond to ping. Need to figure out a work around. Maybe another script to keep them alive?*
