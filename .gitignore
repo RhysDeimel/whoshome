@@ -6,3 +6,5 @@ myvenv/
 userdb
 userdb.db
 secret.txt
+userdb.dat
+userdb.dir
