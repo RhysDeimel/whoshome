@@ -18,7 +18,7 @@ users = {
             },
             '192.168.1.148': {
                 'device': 'phone',
-                'mac': '50:2e:5c:ca:16:1c',
+                'mac': 'ec:1f:72:bd:fd:62',
                 'online': False,
                 'seen': [datetime.datetime.strptime('2017-02-26 01:22:09.489923', '%Y-%m-%d %H:%M:%S.%f'), '']
             }
@@ -32,9 +32,15 @@ users = {
                 'online': False,
                 'seen': [datetime.datetime.strptime('2017-02-26 01:22:09.489923', '%Y-%m-%d %H:%M:%S.%f'), '']
             },
-            '192.168.1.110': {
+            '192.168.1.109': {
                 'device': 'phone',
-                'mac': 'ec:1f:72:bd:fd:62',
+                'mac': '48:4b:aa:1c:b5:ab',
+                'online': False,
+                'seen': [datetime.datetime.strptime('2017-02-26 01:22:09.489923', '%Y-%m-%d %H:%M:%S.%f'), '']
+            },
+            '192.168.1.108': {
+                'device': 'laptop',
+                'mac': '34:f3:9a:47:aa:27',
                 'online': False,
                 'seen': [datetime.datetime.strptime('2017-02-26 01:22:09.489923', '%Y-%m-%d %H:%M:%S.%f'), '']
             }
